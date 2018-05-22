@@ -1,4 +1,4 @@
-# y
+# Vue-Mail
 
 > A Vue.js project
 
