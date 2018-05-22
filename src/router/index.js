@@ -1,15 +1,24 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+
+// 懒加载
+
+const app = () => import('../components/app.vue')
+const register = () => import('../components/register.vue')
+const login = () => import('../components/login.vue')
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {path: '/', redirect: '/home/register'},
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      path: '/home',
+      component: app,
+      children: [
+        {path: 'login', component: login},
+        {path: 'register', component: register}
+      ]
     }
   ]
 })
