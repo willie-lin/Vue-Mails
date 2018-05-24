@@ -1,6 +1,9 @@
 .login {
   width: 994px;
   margin: 0 auto;
+  font-size: 18px;
+  font-family: "Microsoft JhengHei UI Light";
+
 }
 
 .login label {

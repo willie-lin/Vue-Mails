@@ -3,8 +3,8 @@
       <form>
         <label for="name">
           <input type="text" class="input" id="name" @focus.stop="focus=1" @blur="focus=0" v-model="own.name" placeholder="登录名">
-          <em v-show="focus==1||nameIn==false">*你的姓名不能为空且只能由字母，数字，下划线组成</em>
-          <em v-show="req===false||focus!=1">*改昵称已被使用</em>
+          <em v-show="focus===1 || nameIn===false">*你的姓名不能为空且只能由字母，数字，下划线组成</em>
+          <em v-show="req===false && focus!==1">*改昵称已被使用</em>
         </label>
         <label for="tel">
           <input type="text" class="input" id="tel" @focus="focus=2" @blur="focus=0" v-model="own.tel" placeholder="你的电话">
@@ -31,7 +31,7 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
-  data: function () {
+  data () {
     return {
       own: {
         name: '',
@@ -49,8 +49,8 @@ export default {
   },
   methods: {
     ...mapActions(['register']),
-    addToSql: function () {
-      this.nameIn = !((this.own.name === '' || /\W/g.test(this.own.name)))
+    addToSql () {
+      this.nameIn = !(this.own.name === '' || /\W/g.test(this.own.name))
       this.telIn = !(!this.own.tel.length)
       this.pwdIn = !(this.own.pwd.length < 6)
 
@@ -81,6 +81,6 @@ export default {
 </script>
 
 <style scoped>
-  @import "../assets/login.css";
+  @import "../assets/register.css";
 
 </style>
